@@ -5,8 +5,6 @@ import json
 import PyQt5
 import shutil
 
-from cx_Freeze import setup, Executable
-
 dst = os.path.join(os.path.dirname(__file__), "build")
 
 print("Cleaning exe directory..")
@@ -31,6 +29,25 @@ excludes = [
    "Tkinter",
 ]
 
+# Test include availability
+missing = list()
+for module in includes:
+    try:
+        __import__(module, globals={}, locals={})
+    except ImportError:
+        missing.append(module)
+    except Exception:
+        pass  # Exists, but throws an error on import
+
+if missing:
+    sys.stderr.write("There were missing modules\n")
+    for module in missing:
+        sys.stderr.write("- %s\n" % module)
+    exit(1)
+
+# Important to import after above test
+from cx_Freeze import setup, Executable
+
 setup(
     name="pyblish-shell",
     version="1.0",
@@ -51,13 +68,11 @@ setup(
             targetName="pyblish-shell" + ".exe" if os.name == "nt" else "",
             icon="icon.ico",
             targetDir="build",
-            compress=True,
         ),
         Executable(
             "pyblish-qml.py",
             icon="icon.ico",
             targetDir="build",
-            compress=True
         )
     ]
 )

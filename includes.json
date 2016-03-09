@@ -24,8 +24,6 @@
     "UserDict",
     "UserList",
     "UserString",
-    "_LWPCookieJar",
-    "_MozillaCookieJar",
     "__builtin__",
     "__future__",
     "_abcoll",
