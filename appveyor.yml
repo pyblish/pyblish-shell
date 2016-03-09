@@ -1,10 +1,18 @@
+environment:
+  matrix:
+    - PYTHON: "C:\\Python27-x64"
+      PYTHON_VERSION: "2.7.x" # currently 2.7.9
+      PYTHON_ARCH: "64"
+
 install:
-  - choco install -y InnoSetup
-  - git clone https://github.com/pyblish/pyblish
-  - pip install git+git://github.com/pyqt/python-qt5.git
-  - pip install cx_Freeze
+  - set PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%
   - set PYTHONPATH=%CD%\pyblish\pythonpath
   - set PATH=C:\Program Files (x86)\Inno Setup 5;%PATH%
+
+  - choco install -y InnoSetup
+  - git clone https://github.com/pyblish/pyblish
+  - pip install cx_Freeze
+  - pip install git+git://github.com/pyqt/python-qt5.git
 
 build_script:
   - echo Building..
