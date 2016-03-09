@@ -50,7 +50,7 @@ def build_inno_exe(src, dst):
     print("Successfully created installer")
 
 
-def build_zip(src, dst):
+def build_zip(src, dst, platform):
     """Create zip archive
 
     Arguments:
@@ -60,9 +60,10 @@ def build_zip(src, dst):
     """
 
     dst = os.path.join(
-        dst, "python-shell-{version}-build{build}-x64.zip".format(
+        dst, "python-shell-{version}-build{build}-{platform}-x64.zip".format(
             version=version,
-            build=build)
+            build=build,
+            platform=platform)
     )
 
     print("Creating archive %s" % dst)
@@ -103,11 +104,9 @@ if __name__ == '__main__':
     except:
         pass  # Already exists
 
-    if args.platform == "zip":
-        build_zip(src, dst)
-
-    elif args.platform == "windows":
-        build_inno_exe("build", "dist")
+    if args.platform == "windows":
+        build_zip(src, dst, "win32")
+        build_inno_exe(src, dst)
 
     else:
         sys.stderr.write("platform '%s' not supported.\n")

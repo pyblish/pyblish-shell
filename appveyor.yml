@@ -1,0 +1,24 @@
+install:
+  - choco install -y InnoSetup
+  - git clone https://github.com/pyblish/pyblish
+  - pip install git+git://github.com/pyqt/python-qt5.git
+  - pip install cx_Freeze
+  - set PYTHONPATH=%CD%\pyblish\pythonpath
+  - set PATH=C:\Program Files (x86)\Inno Setup 5;%PATH%
+
+build_script:
+  - echo Building..
+  - build-exe.bat
+  - build-installer.bat
+  - dir
+
+artifacts:
+  - path: dist\*.exe
+    name: installer
+
+deploy:
+  provider: Environment
+  name: GitHub
+  on:
+    branch: master
+    appveyor_repo_tag: true
