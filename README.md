@@ -1,2 +1,3 @@
-# pyblish-shell
-Pyblish binaries on-the-go
+![image](https://cloud.githubusercontent.com/assets/2152766/13648619/7fb3de3a-e631-11e5-96b2-7a2a79f51748.png)
+
+Standalone Pyblish binaries.

@@ -1,10 +1,11 @@
-#!/usr/bin/python
-
+#!/usr/bin/env python
 import os
 import sys
 import code
 import runpy
 import argparse
+
+version = "1.0.0"
 
 # Preserve PYTHONPATH, which is removed from sys.path by cx_Freeze
 PYTHONPATH = os.environ.get("PYTHONPATH") or ""
@@ -30,10 +31,14 @@ if __name__ == '__main__':
 
     parser.add_argument("--command", "-c")
     parser.add_argument("--module", "-m", nargs=argparse.REMAINDER)
+    parser.add_argument("--version", action="store_true")
 
     args = parser.parse_args()
 
-    if not (args.command or args.module):
+    if args.version:
+        print(version)
+
+    elif not (args.command or args.module):
         globenv = {k: v for k, v in globals().items()
                    if k.startswith("_")}
         cons = code.InteractiveConsole(locals=globenv)
