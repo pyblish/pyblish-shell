@@ -12,6 +12,7 @@ RUN yum update && \
       tar \
       git \
       wget \
+      python27 \
       python-devel \
       mesa-libGL-devel
 
@@ -35,16 +36,17 @@ RUN cd /src/qt && \
   make -j4 all && \
   make install
 
-RUN cd /src/sip-4.17 && \
+RUN scl enable python27 " \
+    cd /src/sip-4.17 && \
     python configure.py && \
     make && \
-    make install
+    make install"
 
-RUN cd /src/PyQt-gpl-5.5.1 && \
+RUN scl enable python27 " && \
+    cd /src/PyQt-gpl-5.5.1 && \
     python configure.py \
       --confirm-license \
       --qmake /usr/local/Qt/bin/qmake \
       --sip /usr/bin/sip && \
     make && \
-    make install && \
-    cd ..
+    make install"
