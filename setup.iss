@@ -44,9 +44,9 @@ Name: "main"; Description: "Pyblish Shell"; Types: full compact custom; Flags: f
 Root: HKCU; Subkey: "Environment"; ValueType: expandsz; ValueName: "PATH"; ValueData: "{app};{olddata}"; Components: main
 
 [Icons]
-Name: "{group}\Pyblish Shell"; Filename: "{app}\pyblish-shell.exe"; WorkingDir: "{app}"; IconFilename: "{app}\icon.ico"
-Name: "{group}\Pyblish QML"; Filename: "{app}\pyblish-qml.exe"; WorkingDir: "{userdocs}"; IconFilename: "{app}\icon.ico"
-Name: "{group}\Pyblish QML (Debug)"; Filename: "{app}\pyblish-qml.exe"; Parameters: "--debug"; WorkingDir: "{userdocs}"; IconFilename: "{app}\icon.ico"
+Name: "{group}\Pyblish Shell"; Filename: "{app}\pyblish_shell.exe"; WorkingDir: "{app}"; IconFilename: "{app}\icon.ico"
+Name: "{group}\Pyblish QML"; Filename: "{app}\pyblish_qml.exe"; WorkingDir: "{userdocs}"; IconFilename: "{app}\icon.ico"
+Name: "{group}\Pyblish QML (Debug)"; Filename: "{app}\pyblish_qml.exe"; Parameters: "--debug"; WorkingDir: "{userdocs}"; IconFilename: "{app}\icon.ico"
 Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"
 
 [Languages]
