@@ -3,8 +3,8 @@ MAINTAINER  Marcus Ottosson <marcus@abstractfactory.io>
 
 ADD http://download.qt.io/official_releases/qt/5.5/5.5.1/single/qt-everywhere-opensource-src-5.5.1.tar.gz ~/qt.tar.gz
 
-RUN yum update && \
-    yum groupinstall "C Development Tools and Libraries" && \
+RUN yum update -y && \
+    yum groupinstall -y "C Development Tools and Libraries" && \
     yum install -y \
       perl \
       tar \
