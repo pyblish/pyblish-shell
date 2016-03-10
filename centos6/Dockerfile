@@ -1,8 +1,6 @@
 FROM        centos:6.7
 MAINTAINER  Marcus Ottosson <marcus@abstractfactory.io>
 
-ADD http://download.qt.io/official_releases/qt/5.5/5.5.1/single/qt-everywhere-opensource-src-5.5.1.tar.gz ~/qt.tar.gz
-
 RUN yum update -y && \
     yum groupinstall -y "C Development Tools and Libraries" && \
     yum install -y \
@@ -16,7 +14,8 @@ RUN yum update -y && \
 
 # ADD doesn't like these links, so we use wget
 RUN wget -O sip.tar.gz http://sourceforge.net/projects/pyqt/files/sip/sip-4.17/sip-4.17.tar.gz && \
-    wget -O pyqt.tar.gz http://sourceforge.net/projects/pyqt/files/PyQt5/PyQt-5.5.1/PyQt-gpl-5.5.1.tar.gz
+    wget -O pyqt.tar.gz http://sourceforge.net/projects/pyqt/files/PyQt5/PyQt-5.5.1/PyQt-gpl-5.5.1.tar.gz && \
+    wget -O qt.tar.gz http://download.qt.io/official_releases/qt/5.5/5.5.1/single/qt-everywhere-opensource-src-5.5.1.tar.gz
 
 RUN mkdir /src && \
     cd /src && \
