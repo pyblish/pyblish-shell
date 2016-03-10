@@ -24,6 +24,9 @@ artifacts:
   - path: dist\*.exe
     name: installer
 
+  - path: dist\*.zip
+    name: archive
+
 deploy:
   provider: Environment
   name: GitHub

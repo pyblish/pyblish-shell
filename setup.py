@@ -64,13 +64,13 @@ setup(
     },
     executables=[
         Executable(
-            "pyblish-shell.py",
+            "pyblish_shell.py",
             icon="icon.ico",
             targetDir="build",
             base="Console",
         ),
         Executable(
-            "pyblish-qml.py",
+            "pyblish_qml.py",
             icon="icon.ico",
             targetDir="build",
             base="Console",

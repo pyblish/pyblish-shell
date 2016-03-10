@@ -17,7 +17,7 @@ import zipfile
 import argparse
 import subprocess
 
-from app import version
+from pyblish_shell import version
 build = (os.environ.get("APPVEYOR_BUILD_NUMBER") or
          os.environ.get("TRAVIS_BUILD_NUMBER") or
          0)
