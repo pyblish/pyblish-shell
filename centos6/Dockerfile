@@ -19,7 +19,7 @@ RUN wget -O sip.tar.gz http://sourceforge.net/projects/pyqt/files/sip/sip-4.17/s
 
 RUN mkdir /src && \
     cd /src && \
-    tar -xvf ~/qt.tar.gz && \
+    tar -xvf qt.tar.gz && \
     tar -xf sip.tar.gz && \
     tar -xf pyqt.tar.gz && \
     mv /src/qt-everywhere-opensource-src-5.5.1 /src/qt
