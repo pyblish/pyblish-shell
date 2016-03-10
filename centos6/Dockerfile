@@ -21,7 +21,9 @@ RUN mkdir /src && \
     tar -xvf qt.tar.gz -C /src && \
     tar -xf sip.tar.gz -C /src && \
     tar -xf pyqt.tar.gz -C /src && \
-    mv /src/qt-everywhere-opensource-src-5.5.1 /src/qt
+    mv /src/qt-everywhere-opensource-src-5.5.1 /src/qt && \
+    mv /src/sip-4.17 /src/sip && \
+    mv /src/PyQt-gpl-5.5.1 /src/pyqt
 
 RUN cd /src/qt && \
   ./configure \
@@ -36,14 +38,14 @@ RUN cd /src/qt && \
   make -j4 all && \
   make install
 
-RUN scl enable python27 " \
-    cd /src/sip-4.17 && \
+RUN scl enable python27 "\
+    cd /src/sip && \
     python configure.py && \
     make && \
     make install"
 
-RUN scl enable python27 " && \
-    cd /src/PyQt-gpl-5.5.1 && \
+RUN scl enable python27 "\
+    cd /src/pyqt && \
     python configure.py \
       --confirm-license \
       --qmake /usr/local/Qt/bin/qmake \
