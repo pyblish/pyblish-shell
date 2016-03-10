@@ -21,11 +21,8 @@ build_script:
   - dir
 
 artifacts:
-  - path: dist\*.exe
+  - path: dist\*
     name: installer
-
-  - path: dist\*.zip
-    name: archive
 
 deploy:
   provider: Environment
