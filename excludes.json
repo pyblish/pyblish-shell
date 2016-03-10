@@ -49,4 +49,6 @@
     "msvcrt",
     "nt",
     "winsound"
+    "imageop",
+    "msilib",
 ]
