@@ -32,5 +32,21 @@
     "_LWPCookieJar",
     "_MozillaCookieJar",
     "_win32sysloader",
-    "_winxptheme"
+    "_winxptheme",
+
+    // Windows-only
+    "_markerlib",
+    "_msi",
+    "distutils.command.bdist_msi",
+    "_subprocess",
+    "_winreg",
+    "ctypes.macholib",
+    "ctypes.macholib.dyld",
+    "encodings.mbcs",
+    "ensurepip",
+    "ensurepip.__main__",
+    "ensurepip._uninstall",
+    "msvcrt",
+    "nt",
+    "winsound"
 ]
