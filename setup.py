@@ -58,21 +58,22 @@ setup(
             "excludes": excludes,
             "include_files": include_files,
             "include_msvcr": True,
-            "build_exe": "build",
+            "build_exe": os.path.abspath("build"),
             "compressed": True,
         }
     },
     executables=[
         Executable(
-            "app.py",
-            targetName="pyblish-shell" + ".exe" if os.name == "nt" else "",
+            "pyblish-shell.py",
             icon="icon.ico",
             targetDir="build",
+            base="Console",
         ),
         Executable(
             "pyblish-qml.py",
             icon="icon.ico",
             targetDir="build",
+            base="Console",
         )
     ]
 )

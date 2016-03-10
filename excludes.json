@@ -35,9 +35,11 @@
     "_winxptheme",
 
     // Windows-only
+    "nturl2path",
     "_markerlib",
     "_msi",
     "distutils.command.bdist_msi",
+    "ntpath",
     "_subprocess",
     "_winreg",
     "ctypes.macholib",
