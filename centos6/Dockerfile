@@ -22,6 +22,7 @@ RUN yum update -y && \
       perl \
       git \
       tar \
+      centos-release-SCL \
       python27 \
       python-devel \
       mesa-libGL-devel
