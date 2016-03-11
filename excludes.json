@@ -55,6 +55,7 @@
     "msilib",
     "_ctypes_test",
     "_md5",
+    "_sha",
     "_sha256",
     "_sha512",
     "_testcapi",
