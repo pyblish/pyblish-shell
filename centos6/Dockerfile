@@ -23,9 +23,11 @@ RUN yum update -y && \
       git \
       tar \
       centos-release-SCL \
-      python27 \
       python-devel \
-      mesa-libGL-devel
+      mesa-libGL-devel && \
+    yum install -y python27
+
+# Must install python27 *after* centos-release-SCL
 
 RUN tar -xvf ~/qt.tar.gz -C ~/ && \
     tar -xf ~/sip.tar.gz  -C ~/ && \
@@ -43,11 +45,8 @@ RUN cd ~/qt && \
     -no-compile-examples \
     -no-xcb \
     -prefix "/usr/local/Qt" && \
-  cd ~/qt && \
   make -j4 all && \
   make install
-
-RUN yum install -y python27
 
 RUN cd ~ && \
     source /opt/rh/python27/enable && \
