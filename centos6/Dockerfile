@@ -1,3 +1,10 @@
+# Compile dependencies and build pyblish-shell for Centos 6.7
+# Produce output in current working directory.
+#
+# Usage:
+#   $ git clone https://github.com/pyblish/pyblish-shell.git
+#   $ docker run -ti --rm -v $(pwd):/root mottosso/pyblish-shell-centos6.7
+
 FROM        centos:6.7
 MAINTAINER  Marcus Ottosson <marcus@abstractfactory.io>
 
