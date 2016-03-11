@@ -26,9 +26,9 @@ RUN yum update -y && \
       python-devel \
       mesa-libGL-devel
 
-RUN tar -xvf qt.tar.gz && \
-    tar -xf sip.tar.gz  && \
-    tar -xf pyqt.tar.gz  && \
+RUN tar -xvf ~/qt.tar.gz -C ~/ && \
+    tar -xf ~/sip.tar.gz  -C ~/ && \
+    tar -xf ~/pyqt.tar.gz  -C ~/ && \
     mv ~/qt-everywhere-opensource-src-5.5.1 ~/qt && \
     mv ~/sip-4.17 ~/sip && \
     mv ~/PyQt-gpl-5.5.1 ~/pyqt
