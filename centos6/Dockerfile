@@ -3,7 +3,8 @@
 #
 # Usage:
 #   $ git clone https://github.com/pyblish/pyblish-shell.git
-#   $ docker run -ti --rm -v $(pwd)/pyblish-shell:/root mottosso/pyblish-shell-centos6.7 build-exe.sh
+#   $ cd pyblish-shell
+#   $ docker run -ti --rm -v $(pwd):/root mottosso/pyblish-shell-centos6.7 build-exe.sh
 
 FROM        centos:6.7
 MAINTAINER  Marcus Ottosson <marcus@abstractfactory.io>
