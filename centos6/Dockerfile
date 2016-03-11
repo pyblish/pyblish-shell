@@ -14,7 +14,7 @@ RUN yum install -y wget && \
     cd ~ && \
     wget -O ~/sip.tar.gz http://sourceforge.net/projects/pyqt/files/sip/sip-4.17/sip-4.17.tar.gz && \
     wget -O ~/pyqt.tar.gz http://sourceforge.net/projects/pyqt/files/PyQt5/PyQt-5.5.1/PyQt-gpl-5.5.1.tar.gz && \
-    wget -O ~/qt.tar.gz http://download.qt.io/official_releases/qt/5.5/5.5.0/single/qt-everywhere-opensource-src-5.5.0.tar.gz
+    wget -O ~/qt.tar.gz http://download.qt.io/official_releases/qt/5.4/5.4.0/single/qt-everywhere-opensource-src-5.4.0.tar.gz
 
 RUN yum update -y && \
     yum groupinstall -y "Development Tools" && \
@@ -29,7 +29,7 @@ RUN yum update -y && \
 RUN tar -xvf ~/qt.tar.gz -C ~/ && \
     tar -xf ~/sip.tar.gz  -C ~/ && \
     tar -xf ~/pyqt.tar.gz  -C ~/ && \
-    mv ~/qt-everywhere-opensource-src-5.5.0 ~/qt && \
+    mv ~/qt-everywhere-opensource-src-5.4.0 ~/qt && \
     mv ~/sip-4.17 ~/sip && \
     mv ~/PyQt-gpl-5.5.1 ~/pyqt
 
