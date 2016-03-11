@@ -47,6 +47,8 @@ RUN cd ~/qt && \
   make -j4 all && \
   make install
 
+RUN yum install -y python27
+
 RUN cd ~ && \
     source /opt/rh/python27/enable && \
     wget https://bootstrap.pypa.io/get-pip.py && \
