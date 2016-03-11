@@ -28,9 +28,9 @@ RUN yum update -y && \
 RUN tar -xvf qt.tar.gz && \
     tar -xf sip.tar.gz  && \
     tar -xf pyqt.tar.gz  && \
-    mv ~/qt-everywhere-opensource-src-5.5.1 ~/qt && \
-    mv ~/sip-4.17 ~/sip && \
-    mv ~/PyQt-gpl-5.5.1 ~/pyqt
+    mv qt-everywhere-opensource-src-5.5.1 qt && \
+    mv sip-4.17 sip && \
+    mv PyQt-gpl-5.5.1 pyqt
 
 RUN cd ~/qt && \
   ./configure \
