@@ -3,7 +3,7 @@
 #
 # Usage:
 #   $ git clone https://github.com/pyblish/pyblish-shell.git
-#   $ docker run -ti --rm -v $(pwd):/root mottosso/pyblish-shell-centos6.7
+#   $ docker run -ti --rm -v $(pwd)/pyblish-shell:/root mottosso/pyblish-shell-centos6.7 build-exe.sh
 
 FROM        centos:6.7
 MAINTAINER  Marcus Ottosson <marcus@abstractfactory.io>
@@ -45,7 +45,10 @@ RUN cd ~/qt && \
   make install
 
 RUN source /opt/rh/python27/enable && \
-    cd ~/sip && \
+    wget https://bootstrap.pypa.io/get-pip.py && \
+    python get-pip.py
+
+RUN cd ~/sip && \
     python configure.py && \
     make && \
     make install
@@ -56,10 +59,5 @@ RUN cd ~/pyqt && \
       --qmake /usr/local/Qt/bin/qmake \
       --sip /usr/bin/sip && \
     make && \
-    make install
-
-RUN cd ~/pyblish-shell && \
-    wget https://bootstrap.pypa.io/get-pip.py && \
-    pip install -r requirements.txt  && \
-    python setup.py build && \
-    echo Completed Successfully!
+    make install && \
+    cp -r /usr/local/Qt/qml /opt/rh/python27/root/usr/lib64/python2.7/site-packages/PyQt5/qml
