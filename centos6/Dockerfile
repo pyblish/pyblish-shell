@@ -32,7 +32,7 @@ RUN yum install -y wget && \
     wget -O ~/pyqt.tar.gz http://sourceforge.net/projects/pyqt/files/PyQt5/PyQt-5.5.1/PyQt-gpl-5.5.1.tar.gz && \
     git clone git://code.qt.io/qt/qt5.git && \
     cd qt5 && \
-    git checkout 5.4.2 && \
+    git checkout stable && \
     perl init-repository
 
 RUN tar -xf ~/sip.tar.gz  -C ~/ && \
