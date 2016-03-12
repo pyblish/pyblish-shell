@@ -69,6 +69,6 @@ RUN cd ~/pyqt && \
     make install && \
     cp -r /usr/local/Qt/qml /opt/rh/python27/root/usr/lib64/python2.7/site-packages/PyQt5/qml
 
-RUN echo source /opt/rh/python27/enable > ~/.bashrc
+RUN echo source /opt/rh/python27/enable >> ~/.bashrc
 
 WORKDIR /root/workdir
