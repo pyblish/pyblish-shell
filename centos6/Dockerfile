@@ -23,7 +23,10 @@ RUN yum update -y && \
       git \
       tar \
       centos-release-SCL \
-      python-devel \
+      libxcb \
+      libxcb-devel \
+      xcb-util \
+      xcb-util-devel \
       mesa-libGL-devel && \
     yum install -y python27
 
@@ -43,7 +46,6 @@ RUN cd ~/qt && \
     -nomake examples \
     -nomake tests \
     -no-compile-examples \
-    -no-xcb \
     -prefix "/usr/local/Qt" && \
   make -j4 all && \
   make install
@@ -69,6 +71,6 @@ RUN cd ~/pyqt && \
     make install && \
     cp -r /usr/local/Qt/qml /opt/rh/python27/root/usr/lib64/python2.7/site-packages/PyQt5/qml
 
+# Setup environment
 RUN echo source /opt/rh/python27/enable >> ~/.bashrc
-
 WORKDIR /root/workdir
