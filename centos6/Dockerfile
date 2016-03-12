@@ -54,11 +54,13 @@ RUN cd ~ && \
     python get-pip.py
 
 RUN cd ~/sip && \
+    source /opt/rh/python27/enable && \
     python configure.py && \
     make && \
     make install
 
 RUN cd ~/pyqt && \
+    source /opt/rh/python27/enable && \
     python configure.py \
       --confirm-license \
       --qmake /usr/local/Qt/bin/qmake \
