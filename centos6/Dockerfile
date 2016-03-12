@@ -45,6 +45,7 @@ RUN cd ~/qt && \
     -opensource \
     -nomake examples \
     -nomake tests \
+    -qt-xcb \
     -no-compile-examples \
     -prefix "/usr/local/Qt" && \
   make -j4 all && \
