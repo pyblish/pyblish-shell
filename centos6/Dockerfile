@@ -54,7 +54,7 @@ RUN cd ~/qt5 && \
         -nomake tests \
         -no-gtkstyle \
         -qt-libpng \
-        -no-c++11
+        -no-c++11 && \
     make -j4 all && \
     make install"
 
