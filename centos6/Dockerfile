@@ -30,7 +30,7 @@ RUN yum install -y wget && \
     cd ~ && \
     wget -O ~/sip.tar.gz http://sourceforge.net/projects/pyqt/files/sip/sip-4.17/sip-4.17.tar.gz && \
     wget -O ~/pyqt.tar.gz http://sourceforge.net/projects/pyqt/files/PyQt5/PyQt-5.5.1/PyQt-gpl-5.5.1.tar.gz && \
-    git clone git://gitorious.org/qt/qt5.git qt
+    git clone git://code.qt.io/qt/qt5.git qt
 
 RUN tar -xf ~/sip.tar.gz  -C ~/ && \
     tar -xf ~/pyqt.tar.gz  -C ~/ && \
@@ -43,7 +43,7 @@ RUN wget http://people.centos.org/tru/devtools-1.1/devtools-1.1.repo -O /etc/yum
     yum install -y devtoolset-1.1
 
 RUN cd ~/qt && \
-    git checkout stable && \
+    git checkout 5.4.2 && \
     perl init-repository && \
     scl enable devtoolset-1.1 "./configure \
         -confirm-license \
