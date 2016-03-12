@@ -40,17 +40,19 @@ RUN tar -xvf ~/qt.tar.gz -C ~/ && \
     mv ~/PyQt-gpl-5.5.1 ~/pyqt
 
 RUN cd ~/qt && \
-  ./configure \
-    -confirm-license \
-    -opensource \
-    -nomake examples \
-    -nomake tests \
-    -no-zlib \
-    -no-compile-examples \
-    -system-xcb \
-    -prefix "/usr/local/Qt" && \
-  make -j4 all && \
-  make install
+    wget http://people.centos.org/tru/devtools-1.1/devtools-1.1.repo -O /etc/yum.repos.d/devtools-1.1.repo && \
+    yum install -y devtoolset-1.1 && \
+    scl enable devtoolset-1.1 "./configure \
+        -confirm-license \
+        -opensource \
+        -nomake examples \
+        -nomake tests \
+        -no-gtkstyle \
+        -qt-libpng \
+        -no-c++11 \
+        -prefix '/usr/local/Qt' && \
+    make -j4 all && \
+    make install"
 
 RUN cd ~ && \
     source /opt/rh/python27/enable && \
