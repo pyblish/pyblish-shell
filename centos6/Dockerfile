@@ -64,7 +64,7 @@ RUN cd ~/pyqt && \
     python configure.py \
       --confirm-license \
       --qmake /usr/local/Qt/bin/qmake \
-      --sip /usr/bin/sip && \
+      --sip /opt/rh/python27/root/usr/bin/sip && \
     make && \
     make install && \
     cp -r /usr/local/Qt/qml /opt/rh/python27/root/usr/lib64/python2.7/site-packages/PyQt5/qml
