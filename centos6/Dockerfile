@@ -45,8 +45,9 @@ RUN cd ~/qt && \
     -opensource \
     -nomake examples \
     -nomake tests \
-    -qt-xcb \
+    -no-zlib \
     -no-compile-examples \
+    -system-xcb \
     -prefix "/usr/local/Qt" && \
   make -j4 all && \
   make install
