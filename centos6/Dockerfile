@@ -39,12 +39,14 @@ RUN tar -xvf ~/qt.tar.gz -C ~/ && \
     mv ~/sip-4.17 ~/sip && \
     mv ~/PyQt-gpl-5.5.1 ~/pyqt
 
+RUN wget http://people.centos.org/tru/devtools-1.1/devtools-1.1.repo -O /etc/yum.repos.d/devtools-1.1.repo && \
+    yum install -y devtoolset-1.1
+    
 RUN cd ~/qt && \
-    wget http://people.centos.org/tru/devtools-1.1/devtools-1.1.repo -O /etc/yum.repos.d/devtools-1.1.repo && \
-    yum install -y devtoolset-1.1 && \
     scl enable devtoolset-1.1 "./configure \
         -confirm-license \
         -opensource \
+        -qt-xcb \
         -nomake examples \
         -nomake tests \
         -no-gtkstyle \
