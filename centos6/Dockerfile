@@ -3,18 +3,11 @@
 #
 # Usage:
 #   $ git clone https://github.com/pyblish/pyblish-shell.git
-#   $ cd pyblish-shell
-#   $ docker run -ti --rm -v $(pwd):/root mottosso/pyblish-shell-centos6.7 build-exe.sh
+#   $ docker build -t mottosso/pyblish-shell-centos pyblish-shell/centos6
+#   $ docker run -ti --rm -v $(pwd)/pyblish-shell:/root/workdir mottosso/pyblish-shell-centos build-exe.sh
 
 FROM        centos:6.7
 MAINTAINER  Marcus Ottosson <marcus@abstractfactory.io>
-
-# ADD doesn't like these links, so we use wget
-RUN yum install -y wget && \
-    cd ~ && \
-    wget -O ~/sip.tar.gz http://sourceforge.net/projects/pyqt/files/sip/sip-4.17/sip-4.17.tar.gz && \
-    wget -O ~/pyqt.tar.gz http://sourceforge.net/projects/pyqt/files/PyQt5/PyQt-5.5.1/PyQt-gpl-5.5.1.tar.gz && \
-    wget -O ~/qt.tar.gz http://download.qt.io/official_releases/qt/5.4/5.4.0/single/qt-everywhere-opensource-src-5.4.0.tar.gz
 
 RUN yum update -y && \
     yum groupinstall -y "Development Tools" && \
@@ -32,17 +25,26 @@ RUN yum update -y && \
 
 # Must install python27 *after* centos-release-SCL
 
-RUN tar -xvf ~/qt.tar.gz -C ~/ && \
-    tar -xf ~/sip.tar.gz  -C ~/ && \
+# ADD doesn't like these links, so we use wget
+RUN yum install -y wget && \
+    cd ~ && \
+    wget -O ~/sip.tar.gz http://sourceforge.net/projects/pyqt/files/sip/sip-4.17/sip-4.17.tar.gz && \
+    wget -O ~/pyqt.tar.gz http://sourceforge.net/projects/pyqt/files/PyQt5/PyQt-5.5.1/PyQt-gpl-5.5.1.tar.gz && \
+    git clone git://gitorious.org/qt/qt5.git qt
+
+RUN tar -xf ~/sip.tar.gz  -C ~/ && \
     tar -xf ~/pyqt.tar.gz  -C ~/ && \
-    mv ~/qt-everywhere-opensource-src-5.4.0 ~/qt && \
     mv ~/sip-4.17 ~/sip && \
     mv ~/PyQt-gpl-5.5.1 ~/pyqt
 
+# We'll need GCC 4.7.2, default is 4.7.7, see here:
+# http://forum.qt.io/topic/30140/solved-qt-creator-could-not-find-or-load-the-qt-platform-plugin-xcb/7
 RUN wget http://people.centos.org/tru/devtools-1.1/devtools-1.1.repo -O /etc/yum.repos.d/devtools-1.1.repo && \
     yum install -y devtoolset-1.1
-    
+
 RUN cd ~/qt && \
+    git checkout stable && \
+    perl init-repository && \
     scl enable devtoolset-1.1 "./configure \
         -confirm-license \
         -opensource \
@@ -51,8 +53,7 @@ RUN cd ~/qt && \
         -nomake tests \
         -no-gtkstyle \
         -qt-libpng \
-        -no-c++11 \
-        -prefix '/usr/local/Qt' && \
+        -no-c++11
     make -j4 all && \
     make install"
 
@@ -70,12 +71,11 @@ RUN cd ~/sip && \
 RUN cd ~/pyqt && \
     source /opt/rh/python27/enable && \
     python configure.py \
-      --confirm-license \
-      --qmake /usr/local/Qt/bin/qmake \
-      --sip /opt/rh/python27/root/usr/bin/sip && \
+      --confirm-license && \
     make && \
-    make install && \
-    cp -r /usr/local/Qt/qml /opt/rh/python27/root/usr/lib64/python2.7/site-packages/PyQt5/qml
+    make install
+
+    # cp -r /usr/local/Qt/qml /opt/rh/python27/root/usr/lib64/python2.7/site-packages/PyQt5/qml
 
 # Setup environment
 RUN echo source /opt/rh/python27/enable >> ~/.bashrc
