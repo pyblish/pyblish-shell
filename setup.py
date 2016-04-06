@@ -51,10 +51,11 @@ if missing:
 
 # Important to import after above test
 from cx_Freeze import setup, Executable
+from pyblish_shell import version
 
 setup(
     name="pyblish-shell",
-    version="1.1",
+    version=version,
     description="Pyblish Shell",
     options={
         "build_exe": {
