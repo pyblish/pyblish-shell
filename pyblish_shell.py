@@ -4,6 +4,7 @@ import sys
 import code
 import runpy
 import argparse
+import subprocess
 
 version = "1.0.0"
 
@@ -19,7 +20,7 @@ if hasattr(sys, "frozen"):
 
 # Message for interactive interpreter
 banner = (
-    'Pyblish 2.7.10 (default, May 23 2015, 09:44:00) '
+    'Python 2.7.10 (pyblish, May 23 2015, 09:44:00) '
     '[MSC v.1500 64 bit (AMD64)] on win32\n'
     'Type "help", "copyright", "credits" or "license" '
     'for more information.'
@@ -29,14 +30,36 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description="Customised Python shell for Pyblish")
 
+    parser.add_argument("file", nargs='*')
     parser.add_argument("--command", "-c")
+    parser.add_argument("--unbuffered", "-u", action="store_true")
     parser.add_argument("--module", "-m", nargs=argparse.REMAINDER)
     parser.add_argument("--version", action="store_true")
+    parser.add_argument("--background", action="store_true")
 
-    args = parser.parse_args()
+    args, extras = parser.parse_known_args()
+
+    if args.unbuffered or os.environ.get("PYTHONUNBUFFERED"):
+        sys.stdin = os.fdopen(sys.stdin.fileno(), 'r', 0)
+        sys.stdout = os.fdopen(sys.stdout.fileno(), 'w', 0)
+        sys.stderr = os.fdopen(sys.stderr.fileno(), 'w', 0)
 
     if args.version:
         print(version)
+
+    elif args.background:
+        args = [sys.executable] + sys.argv[1:]
+        args.remove("--background")
+        CREATE_NO_WINDOW = 0x08000000
+        subprocess.Popen(args,
+                         creationflags=CREATE_NO_WINDOW,
+                         stdout=subprocess.PIPE,
+                         stderr=subprocess.STDOUT)
+
+    elif args.file:
+        sys.argv.pop(0)
+        print("File: %s" % args.file)
+        runpy.run_path(args.file[0])
 
     elif not (args.command or args.module):
         globenv = {k: v for k, v in globals().items()

@@ -20,6 +20,10 @@ include_files = [
     (os.path.join(qmldir, "QtQuick.2"), "QtQuick.2"),
     (os.path.join(qmldir, "QtQuick"), "QtQuick"),
     (os.path.join(qmldir, "QtGraphicalEffects"), "QtGraphicalEffects"),
+    "pyblish_qml.bat",  # Windows
+    "pyblish_tray.bat",
+    "pyblish_qml",  # Linux
+    "pyblish_tray",
 ]
 
 with open("includes.json") as f:
@@ -50,7 +54,7 @@ from cx_Freeze import setup, Executable
 
 setup(
     name="pyblish-shell",
-    version="1.0",
+    version="1.1",
     description="Pyblish Shell",
     options={
         "build_exe": {
@@ -69,11 +73,5 @@ setup(
             targetDir="build",
             base="Console",
         ),
-        Executable(
-            "pyblish_qml.py",
-            icon="icon.ico",
-            targetDir="build",
-            base="Console",
-        )
     ]
 )

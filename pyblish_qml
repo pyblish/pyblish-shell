@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+pyblish_shell -m pyblish_qml "$@"
