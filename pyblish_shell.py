@@ -53,7 +53,7 @@ if __name__ == '__main__':
         CREATE_NO_WINDOW = 0x08000000
         subprocess.Popen(args,
                          creationflags=CREATE_NO_WINDOW,
-                         stdout=subprocess.PIPE,
+                         stdout=open("log.txt", "a"),
                          stderr=subprocess.STDOUT)
 
     elif args.file:
