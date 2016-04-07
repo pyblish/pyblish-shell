@@ -60,7 +60,7 @@ def build_zip(src, dst, platform):
     """
 
     dst = os.path.join(
-        dst, "python-shell-{version}-build{build}-{platform}-x64.zip".format(
+        dst, "pyblish-shell-{version}-build{build}-{platform}-x64.zip".format(
             version=version,
             build=build,
             platform=platform)
