@@ -58,7 +58,6 @@ if __name__ == '__main__':
 
     elif args.file:
         sys.argv.pop(0)
-        print("File: %s" % args.file)
         runpy.run_path(args.file[0])
 
     elif not (args.command or args.module):
