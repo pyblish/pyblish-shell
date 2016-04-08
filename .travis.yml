@@ -5,7 +5,8 @@ python:
 - 2.7
 
 install:
-- ./.travis/install.sh
+- echo $(pwd)
+- bash .travis/install.sh
 
 script:
 - echo "Starting build.."
