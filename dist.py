@@ -91,12 +91,12 @@ if __name__ == '__main__':
     dst = os.path.abspath("dist")
 
     if args.clean and os.path.exists(dst):
-        print("Cleaning build directory..")
+        print("Cleaning dist directory..")
 
         try:
             shutil.rmtree(dst)
         except:
-            sys.stderr.write("Could not remove build directory")
+            sys.stderr.write("Could not remove dist directory")
             exit(1)
 
     try:
@@ -107,6 +107,9 @@ if __name__ == '__main__':
     if args.platform == "windows":
         build_zip(src, dst, "win32")
         build_inno_exe(src, dst)
+    
+    elif args.platform == "osx":
+        build_zip(src, dst, "osx")
 
     else:
         sys.stderr.write("platform '%s' not supported.\n")
