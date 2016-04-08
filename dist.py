@@ -104,12 +104,7 @@ if __name__ == '__main__':
     except:
         pass  # Already exists
 
-    if args.platform == "windows":
-        build_zip(src, dst, "win32")
-        build_inno_exe(src, dst)
-    
-    elif args.platform == "osx":
-        build_zip(src, dst, "osx")
+    build_zip(src, dst, args.platform)
 
-    else:
-        sys.stderr.write("platform '%s' not supported.\n")
+    if args.platform == "windows":
+        build_inno_exe(src, dst)

@@ -59,4 +59,13 @@
     "_sha256",
     "_sha512",
     "_testcapi",
+    
+    // OSX-only
+    "_bsddb",
+    "bsddb",
+    "bsddb.dbobj",
+    "bsddb.dbrecio",
+    "bsddb.dbshelve",
+    "bsddb.dbtables",
+    "dbhash",
 ]

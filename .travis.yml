@@ -1,4 +1,5 @@
 os:
+- linux
 - osx
 
 python:
@@ -10,7 +11,8 @@ install:
 
 script:
 - echo "Starting build.."
-- sudo bash build-exe.sh $TRAVIS_OS_NAME
+- sudo bash build-exe.sh
+- sudo bash build-installer.sh $TRAVIS_OS_NAME
 - echo "Finished!"
 
 deploy:
