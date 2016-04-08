@@ -1,7 +1,6 @@
-# Build Pyblish Shell for OSX
+#!/bin/bash
 
-if [ "$TRAVIS_OS_NAME" = "osx"]
-then
+if [[ $TRAVIS_OS_NAME = 'osx' ]]; then
     brew update
     brew install qt55 python
     brew link --force qt55
@@ -23,8 +22,7 @@ cd ..
 tar xvzf PyQt-gpl-5.5.1.tar.gz
 cd PyQt-gpl-5.5.1
 
-if [ "$TRAVIS_OS_NAME" = "osx"]
-then
+if [[ $TRAVIS_OS_NAME = 'osx' ]]; then
     python configure.py --sip=/usr/local/Cellar/python/2.7.11/Frameworks/Python.framework/Versions/2.7/bin/sip --confirm-license
 else
     echo "$TRAVIS_OS_NAME not supported"
