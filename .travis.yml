@@ -5,10 +5,10 @@ os:
 python:
 - 2.7
 
-install:
-- echo "Installing in $(pwd)"
-- source .travis/install.sh
-- echo "Finished in $(pwd)"
+before_install:
+- echo "Before install.."
+- ./.travis/install.sh
+- echo "QT_ROOT=$QT_ROOT"
 
 script:
 - echo "Starting build in $(pwd)"
