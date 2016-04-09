@@ -7,14 +7,14 @@ python:
 
 install:
 - echo "Installing in $(pwd)"
-- sudo bash .travis/install.sh
+- . .travis/install.sh
 - echo "Finished in $(pwd)"
 
 script:
 - echo "Starting build in $(pwd)"
-- export QT_ROOT=$(cat ~/qt_root)
-- sudo bash -e build-exe.sh
-- sudo bash -e build-installer.sh $TRAVIS_OS_NAME
+- echo "QT_ROOT=$QT_ROOT"
+- python setup.py build
+- python dist.py $TRAVIS_OS_NAME
 - echo "Finished in $(pwd)"
 
 deploy:
