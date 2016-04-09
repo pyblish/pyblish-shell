@@ -8,12 +8,12 @@ python:
 sudo: required # install.sh requires sudo apt-get on Linux
 
 install:
-- echo "Before install.."
+- echo "Install.."
 - ./.travis/install.sh
-- echo "QT_ROOT=$QT_ROOT"
 
 script:
 - echo "Starting build in $(pwd)"
+- export "QT_ROOT=$(cat QT_ROOT)"
 - echo "QT_ROOT=$QT_ROOT"
 - python setup.py build
 - python dist.py $TRAVIS_OS_NAME

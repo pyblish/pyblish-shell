@@ -48,4 +48,5 @@ make
 sudo make install
 cd ..
 
+echo $QT_ROOT >> QT_ROOT
 echo "Finished install.sh"
