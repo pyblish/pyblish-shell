@@ -9,7 +9,7 @@ sudo: required
 
 install:
 - echo "Installing in $(pwd)"
-- ./.travis/install.sh
+- sudo bash -e .travis/install.sh
 - echo "Finished in $(pwd)"
 
 script:
