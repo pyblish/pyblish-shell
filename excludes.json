@@ -33,6 +33,7 @@
     "_MozillaCookieJar",
     "_win32sysloader",
     "_winxptheme",
+    "_osx_support",
 
     // Windows-only
     "nturl2path",

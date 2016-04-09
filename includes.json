@@ -50,7 +50,6 @@
     "_lsprof",
     "_multibytecodec",
     "_multiprocessing",
-    "_osx_support",
     "_pyio",
     "_random",
     "_socket",
