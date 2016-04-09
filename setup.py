@@ -17,8 +17,11 @@ if os.path.exists(dst):
         sys.stderr.write("Could not remove build directory")
         exit(1)
 
-qmldir = (os.path.join(os.environ.get("QT_ROOT"), "qml") or 
-          os.path.join(os.path.dirname(PyQt5.__file__), "qml"))
+qmldir = os.path.join(
+    os.environ.get("QT_ROOT") or
+    os.path.dirname(PyQt5.__file__),
+    "qml"
+)
 
 print("qmldir: %s" % qmldir)
 
