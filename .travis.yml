@@ -7,7 +7,7 @@ python:
 
 install:
 - echo "Installing in $(pwd)"
-- bash .travis/install.sh
+- sudo bash .travis/install.sh
 - echo "Finished in $(pwd)"
 
 script:
