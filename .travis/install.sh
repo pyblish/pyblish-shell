@@ -40,4 +40,8 @@ make
 sudo make install
 cd ..
 
+echo "Installing QML.."
+mkdir -p /usr/lib/python2.7/dist-packages/PyQt5/qml
+cp -r /opt/qt55/qml /usr/lib/python2.7/dist-packages/PyQt5/
+
 echo "Finished install.sh"
