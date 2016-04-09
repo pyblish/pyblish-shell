@@ -5,6 +5,8 @@ import json
 import PyQt5
 import shutil
 
+print("PyQt5 path: %s" % PyQt5.__file__)
+
 dst = os.path.join(os.path.dirname(__file__), "build")
 
 print("Cleaning exe directory..")
