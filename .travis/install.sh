@@ -17,9 +17,9 @@ if [[ $TRAVIS_OS_NAME = 'osx' ]]; then
 elif [[ $TRAVIS_OS_NAME = 'linux' ]]; then
     echo "Building in Linux"
 
-    apt-add-repository -y ppa:beineri/opt-qt551
-    apt-get update
-    apt-get install -y qt-latest
+    sudo apt-add-repository -y ppa:beineri/opt-qt551
+    sudo apt-get update
+    sudo apt-get install -y qt-latest
     source /opt/qt55/bin/qt55-env.sh
 
     export QT_ROOT=/opt/qt55
