@@ -17,10 +17,10 @@ if os.path.exists(dst):
         sys.stderr.write("Could not remove build directory")
         exit(1)
 
-qmldir = (os.environ.get("QML_ROOT") or 
+qmldir = (os.path.join(os.environ.get("QT_ROOT"), "qml") or 
           os.path.join(os.path.dirname(PyQt5.__file__), "qml"))
 
-print("QML_ROOT: %s" % qmldir)
+print("qmldir: %s" % qmldir)
 
 include_files = [
     (os.path.join(qmldir, "QtQuick.2"), "QtQuick.2"),

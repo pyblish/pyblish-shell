@@ -1,7 +1,7 @@
 #!/bin/bash
 
-export QML_ROOT=""
-sip=""
+QT_ROOT=""
+SIP=""
 
 echo "Evaluating OS.."
 if [[ $TRAVIS_OS_NAME = 'osx' ]]; then
@@ -11,8 +11,8 @@ if [[ $TRAVIS_OS_NAME = 'osx' ]]; then
     brew install qt55 python
     brew link --force qt55
 
-    export QML_ROOT=/usr/local/opt/qt55/qml
-    sip=/usr/local/Cellar/python/2.7.11/Frameworks/Python.framework/Versions/2.7/bin/sip
+    QT_ROOT=/usr/local/opt/qt55
+    SIP=/usr/local/Cellar/python/2.7.11/Frameworks/Python.framework/Versions/2.7/bin/sip
 
 elif [[ $TRAVIS_OS_NAME = 'linux' ]]; then
     echo "Building in Linux"
@@ -22,8 +22,8 @@ elif [[ $TRAVIS_OS_NAME = 'linux' ]]; then
     sudo apt-get install -y qt-latest python-dev
     source /opt/qt55/bin/qt55-env.sh
 
-    export QML_ROOT=/opt/qt55/qml
-    sip=/usr/bin/sip
+    QT_ROOT=/opt/qt55
+    SIP=/usr/bin/sip
 
 else
     echo $TRAVIS_OS_NAME not supported.
@@ -45,9 +45,12 @@ cd ..
 echo "Building PyQt5.."
 tar xvzf PyQt-gpl-5.5.1.tar.gz
 cd PyQt-gpl-5.5.1
-python configure.py --sip=$sip --confirm-license
+python configure.py --sip=$SIP --confirm-license
 make
 sudo make install
 cd ..
+
+echo "Exposing QT_ROOT=$QT_ROOT.."
+echo QT_ROOT=$QT_ROOT >> ~/.bashrc
 
 echo "Finished install.sh"
