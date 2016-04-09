@@ -6,10 +6,10 @@ python:
 - 2.7
 
 install:
-- bash -e .travis/install.sh
+- sudo bash -e .travis/install.sh
 
 script:
-- bash -e .travis/script.sh
+- sudo bash -e .travis/script.sh
 
 deploy:
   provider: releases

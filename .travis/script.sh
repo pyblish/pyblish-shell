@@ -9,7 +9,7 @@ else
     exit 1
 fi
 
-bash -e build-exe.sh
+bash -e build-exe.sh && \
 bash -e build-installer.sh $TRAVIS_OS_NAME
 
 echo "Finished script.sh"
