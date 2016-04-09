@@ -17,9 +17,9 @@ if [[ $TRAVIS_OS_NAME = 'osx' ]]; then
 elif [[ $TRAVIS_OS_NAME = 'linux' ]]; then
     echo "Building in Linux"
 
-    apt-add-repository -y ppa:beineri/opt-qt551
-    apt-get update
-    apt-get install -y qt-latest
+    sudo apt-add-repository -y ppa:beineri/opt-qt551
+    sudo apt-get update
+    sudo apt-get install -y qt-latest
     source /opt/qt55/bin/qt55-env.sh
 
     export QT_ROOT=/opt/qt55
@@ -39,7 +39,7 @@ tar xvzf sip-4.17.tar.gz
 cd sip-4.17
 python configure.py
 make
-make install
+sudo make install
 cd ..
 
 echo "Building PyQt5.."
@@ -47,7 +47,7 @@ tar xvzf PyQt-gpl-5.5.1.tar.gz
 cd PyQt-gpl-5.5.1
 python configure.py --sip=$SIP --confirm-license
 make
-make install
+sudo make install
 cd ..
 
 echo "Finished install.sh"
