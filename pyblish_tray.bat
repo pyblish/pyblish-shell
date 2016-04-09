@@ -1,2 +1,2 @@
 @echo off
-pyblish_shell.exe --background -m pyblish_tray %*
+pyblish_shell.exe -m pyblish_tray %*
