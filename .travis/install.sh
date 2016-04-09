@@ -1,6 +1,5 @@
 #!/bin/bash
 
-QT_ROOT=""
 SIP=""
 
 echo "Evaluating OS.."
@@ -11,7 +10,6 @@ if [[ $TRAVIS_OS_NAME = 'osx' ]]; then
     brew install qt55 python
     brew link --force qt55
 
-    QT_ROOT=/usr/local/opt/qt55
     SIP=/usr/local/Cellar/python/2.7.11/Frameworks/Python.framework/Versions/2.7/bin/sip
 
 elif [[ $TRAVIS_OS_NAME = 'linux' ]]; then
@@ -22,7 +20,6 @@ elif [[ $TRAVIS_OS_NAME = 'linux' ]]; then
     sudo apt-get install -y qt-latest python-dev
     source /opt/qt55/bin/qt55-env.sh
 
-    QT_ROOT=/opt/qt55
     SIP=/usr/bin/sip
 
 else
@@ -49,8 +46,5 @@ python configure.py --sip=$SIP --confirm-license
 make
 sudo make install
 cd ..
-
-echo "Exposing QT_ROOT=$QT_ROOT.."
-echo QT_ROOT=$QT_ROOT >> ~/.bashrc
 
 echo "Finished install.sh"

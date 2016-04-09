@@ -6,15 +6,10 @@ python:
 - 2.7
 
 install:
-- echo "Installing in $(pwd)"
-- bash .travis/install.sh
-- echo "Finished in $(pwd)"
+- bash -e .travis/install.sh
 
 script:
-- echo "Starting build in $(pwd)"
-- sudo bash -e build-exe.sh
-- sudo bash -e build-installer.sh $TRAVIS_OS_NAME
-- echo "Finished in $(pwd)"
+- bash -e .travis/script.sh
 
 deploy:
   provider: releases
