@@ -10,10 +10,10 @@ if [[ $TRAVIS_OS_NAME = 'osx' ]]; then
 
 elif [[ $TRAVIS_OS_NAME = 'linux' ]]; then
     echo "Building in Linux"
-    sudo apt-add-repository -y ppa:beineri/opt-qt56-trusty
+    sudo apt-add-repository -y ppa:beineri/opt-qt551
     sudo apt-get update
-    sudo apt-get install -y qt-latest
-    source /opt/qt56/bin/qt56-env.sh
+    sudo apt-get install -y qt-latest python-dev
+    source /opt/qt55/bin/qt55-env.sh
     sip=/usr/bin/sip
 else
     echo $TRAVIS_OS_NAME not supported.
