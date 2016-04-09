@@ -1,20 +1,30 @@
 #!/bin/bash
 
+qmldir=""
+sip=""
+
 echo "Evaluating OS.."
 if [[ $TRAVIS_OS_NAME = 'osx' ]]; then
     echo "Building in OSX"
+
     brew update
     brew install qt55 python
     brew link --force qt55
+
+    qmldir=/usr/local/opt/qt55/
     sip=/usr/local/Cellar/python/2.7.11/Frameworks/Python.framework/Versions/2.7/bin/sip
 
 elif [[ $TRAVIS_OS_NAME = 'linux' ]]; then
     echo "Building in Linux"
+
     sudo apt-add-repository -y ppa:beineri/opt-qt551
     sudo apt-get update
     sudo apt-get install -y qt-latest python-dev
     source /opt/qt55/bin/qt55-env.sh
+
+    qmldir=/opt/qt55/qml
     sip=/usr/bin/sip
+
 else
     echo $TRAVIS_OS_NAME not supported.
     exit 1
@@ -41,7 +51,6 @@ sudo make install
 cd ..
 
 echo "Installing QML.."
-mkdir -p /usr/lib/python2.7/dist-packages/PyQt5/qml
-cp -r /opt/qt55/qml /usr/lib/python2.7/dist-packages/PyQt5/
+sudo cp -r $qmldir /usr/lib/python2.7/dist-packages/PyQt5/
 
 echo "Finished install.sh"
