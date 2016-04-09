@@ -1,6 +1,6 @@
 #!/bin/bash
 
-qmldir=""
+export QML_ROOT=""
 sip=""
 
 echo "Evaluating OS.."
@@ -11,7 +11,7 @@ if [[ $TRAVIS_OS_NAME = 'osx' ]]; then
     brew install qt55 python
     brew link --force qt55
 
-    qmldir=/usr/local/opt/qt55/
+    export QML_ROOT=/usr/local/opt/qt55/qml
     sip=/usr/local/Cellar/python/2.7.11/Frameworks/Python.framework/Versions/2.7/bin/sip
 
 elif [[ $TRAVIS_OS_NAME = 'linux' ]]; then
@@ -22,7 +22,7 @@ elif [[ $TRAVIS_OS_NAME = 'linux' ]]; then
     sudo apt-get install -y qt-latest python-dev
     source /opt/qt55/bin/qt55-env.sh
 
-    qmldir=/opt/qt55/qml
+    export QML_ROOT=/opt/qt55/qml
     sip=/usr/bin/sip
 
 else
@@ -49,8 +49,5 @@ python configure.py --sip=$sip --confirm-license
 make
 sudo make install
 cd ..
-
-echo "Installing QML.."
-sudo cp -r $qmldir /usr/lib/python2.7/dist-packages/PyQt5/
 
 echo "Finished install.sh"

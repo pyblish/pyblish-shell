@@ -6,14 +6,15 @@ python:
 - 2.7
 
 install:
-- echo $(pwd)
+- echo "Installing in $(pwd)"
 - bash .travis/install.sh
+- echo "Finished in $(pwd)"
 
 script:
-- echo "Starting build.."
+- echo "Starting build in $(pwd)"
 - sudo bash -e build-exe.sh
 - sudo bash -e build-installer.sh $TRAVIS_OS_NAME
-- echo "Finished!"
+- echo "Finished in $(pwd)"
 
 deploy:
   provider: releases
@@ -22,4 +23,5 @@ deploy:
   file: "dist/*"
   skip_cleanup: true
   on:
+    # tags: true
     repo: pyblish/pyblish-shell
