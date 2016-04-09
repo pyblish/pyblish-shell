@@ -5,9 +5,11 @@ os:
 python:
 - 2.7
 
+sudo: required
+
 install:
 - echo "Installing in $(pwd)"
-- sudo source .travis/install.sh
+- ./.travis/install.sh
 - echo "Finished in $(pwd)"
 
 script:
