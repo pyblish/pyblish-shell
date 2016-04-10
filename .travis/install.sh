@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SIP=""
+SIP=$(cat SIP)
 
 echo "Building in $TRAVIS_OS_NAME"
 
