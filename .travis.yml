@@ -18,7 +18,10 @@ install:
 
 script:
 - echo "Starting build in $(pwd)"
+- echo "Running: $(cat POST_COMMAND)"
 - $(cat POST_COMMAND)
+- echo "QT_ROOT=$QT_ROOT"
+- echo "SIP=$SIP"
 - python setup.py build
 - python dist.py $TRAVIS_OS_NAME
 - echo "Finished in $(pwd)"
