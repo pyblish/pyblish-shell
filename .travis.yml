@@ -17,6 +17,8 @@ install:
 script:
 - echo "Starting build in $(pwd)"
 - python setup.py build
+- echo "Build completed"
+- tree build
 - python dist.py $TRAVIS_OS_NAME
 - echo "Finished in $(pwd)"
 
