@@ -8,11 +8,8 @@ brew link --force qt55
 python --version
 echo "Python dir: $(python -c 'import sys;print(sys.executable)')"
 
-export QT_ROOT=/usr/local/Cellar/qt55
+export QT_ROOT=/usr/local/qt55
 export SIP=/System/Library/Frameworks/Python.framework/Versions/2.7/bin/sip
 
-echo "Qt install: $QT_ROOT"
-tree $QT_ROOT
-
-echo "Qt Cellar: /usr/local/Cellar/qt55/"
-tree /usr/local/Cellar/qt55/
+echo "Listing: $QT_ROOT"
+tree %QT_ROOT

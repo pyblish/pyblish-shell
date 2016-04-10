@@ -15,12 +15,14 @@ install:
 - sudo pip install -r requirements.txt
 
 script:
-- echo "Starting build in $(pwd)"
+- echo "Building.."
 - python setup.py build
 - echo "Build completed"
 - tree build
+- echo "Packaging.."
 - python dist.py $TRAVIS_OS_NAME
-- echo "Finished in $(pwd)"
+- echo "Packaging completed"
+- tree dist
 
 deploy:
   provider: releases
