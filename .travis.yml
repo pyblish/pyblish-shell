@@ -9,19 +9,13 @@ sudo: required # install.sh requires sudo apt-get on Linux
 
 install:
 - echo "Install.."
-- touch POST_COMMAND
-- if [[ $TRAVIS_OS_NAME = 'osx' ]]; then .travis/install_osx.sh; fi
-- if [[ $TRAVIS_OS_NAME = 'linux' ]]; then .travis/install_linux.sh; fi
-- $(cat POST_COMMAND)
-- ./.travis/install.sh
+- if [[ $TRAVIS_OS_NAME = 'osx' ]]; then source .travis/install_osx.sh; fi
+- if [[ $TRAVIS_OS_NAME = 'linux' ]]; then source .travis/install_linux.sh; fi
+- source .travis/install.sh
 - sudo pip install -r requirements.txt
 
 script:
 - echo "Starting build in $(pwd)"
-- echo "Running: $(cat POST_COMMAND)"
-- $(cat POST_COMMAND)
-- echo "QT_ROOT=$QT_ROOT"
-- echo "SIP=$SIP"
 - python setup.py build
 - python dist.py $TRAVIS_OS_NAME
 - echo "Finished in $(pwd)"
