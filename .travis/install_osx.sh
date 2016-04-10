@@ -1,7 +1,7 @@
 #!/bin/bash
 
 brew update
-brew install qt55
+brew install qt55 tree
 brew link --force qt55
 
 echo "Python version: $(python --version)"
