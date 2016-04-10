@@ -1,7 +1,5 @@
 #!/bin/bash
 
-SIP=$(cat SIP)
-
 echo "Building in $TRAVIS_OS_NAME"
 
 echo "Fetching data.."
