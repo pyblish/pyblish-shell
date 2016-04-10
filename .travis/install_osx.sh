@@ -1,7 +1,7 @@
 #!/bin/bash
 
 brew update
-brew install qt55 python
+brew install qt55
 brew link --force qt55
 
 export QT_ROOT=/usr/local/opt/qt55
