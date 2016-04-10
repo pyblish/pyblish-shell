@@ -9,17 +9,15 @@ sudo: required # install.sh requires sudo apt-get on Linux
 
 install:
 - echo "Install.."
-# - if [[ $TRAVIS_OS_NAME = 'osx' ]]; then source .travis/install_osx.sh; fi
-# - if [[ $TRAVIS_OS_NAME = 'linux' ]]; then source .travis/install_linux.sh; fi
-# - source .travis/install.sh
-# - sudo pip install -r requirements.txt
-- mkdir dist
-- touch dist/myfile.tar.gz
+- if [[ $TRAVIS_OS_NAME = 'osx' ]]; then source .travis/install_osx.sh; fi
+- if [[ $TRAVIS_OS_NAME = 'linux' ]]; then source .travis/install_linux.sh; fi
+- source .travis/install.sh
+- sudo pip install -r requirements.txt
 
 script:
 - echo "Starting build in $(pwd)"
-# - python setup.py build
-# - python dist.py $TRAVIS_OS_NAME
+- python setup.py build
+- python dist.py $TRAVIS_OS_NAME
 - echo "Finished in $(pwd)"
 
 deploy:
