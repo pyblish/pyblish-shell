@@ -7,12 +7,12 @@ import shutil
 
 print("PyQt5 path: %s" % PyQt5.__file__)
 
-dst = os.path.join(os.path.dirname(__file__), "build")
+builddir = os.path.join(os.path.dirname(__file__), "build")
 
-print("Cleaning exe directory..")
-if os.path.exists(dst):
+print("Cleaning /build directory..")
+if os.path.exists(builddir):
     try:
-        shutil.rmtree(dst)
+        shutil.rmtree(builddir)
     except:
         sys.stderr.write("Could not remove build directory")
         exit(1)
@@ -24,19 +24,14 @@ qmldir = os.path.join(
 )
 
 include_files = [
-    "pyblish_qml.bat",  # Windows
-    "pyblish_tray.bat",
-    "pyblish_qml",  # Unix
-    "pyblish_tray",
+    # "pyblish_qml.bat",  # Windows
+    # "pyblish_tray.bat",
+    # "pyblish_qml",  # Unix
+    # "pyblish_tray",
     # (os.path.join(qmldir, "QtQuick"), "QtQuick"),
-    (os.path.join(qmldir, "QtQuick.2"), "QtQuick.2"),
-    (os.path.join(qmldir, "QtGraphicalEffects"), "QtGraphicalEffects"),
+    # (os.path.join(qmldir, "QtQuick.2"), "QtQuick.2"),
+    # (os.path.join(qmldir, "QtGraphicalEffects"), "QtGraphicalEffects"),
 ]
-
-print("Listing contents of %s" % qmldir)
-for root, dirs, files in os.walk(qmldir):
-    for file in files:
-        print(os.path.join(root, file))
 
 with open("includes.json") as f:
     includes = json.load(f)
@@ -88,3 +83,26 @@ setup(
         ),
     ]
 )
+
+# Copy data files
+# Done manually, due to bug on OSX
+for src in [os.path.abspath("pyblish_qml.bat"),
+            os.path.abspath("pyblish_tray.bat"),
+            os.path.abspath("pyblish_qml"),
+            os.path.abspath("pyblish_tray"),
+            os.path.join(qmldir, "QtQuick"),
+            os.path.join(qmldir, "QtQuick.2"),
+            os.path.join(qmldir, "QtGraphicalEffects")]:
+
+    basename = os.path.basename(src)
+    dst = os.path.join(builddir, basename)
+
+    if os.path.isdir(src):
+        shutil.copytree(src, dst)
+    else:
+        shutil.copyfile(src, dst)
+
+print("Build complete")
+for root, dirs, files in os.walk(builddir):
+    for file in files:
+        print(os.path.join(root, file))
