@@ -39,7 +39,7 @@ elif "linux" in sys.platform:
         (os.path.join(qmldir, "QtQuick.2"), "QtQuick.2"),
         (os.path.join(qmldir, "QtGraphicalEffects"), "QtGraphicalEffects"),
     ])
-]
+
 
 elif "darwin" in sys.platform:
     include_files.extend([
