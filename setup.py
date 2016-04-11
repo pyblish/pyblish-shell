@@ -26,8 +26,8 @@ qmldir = os.path.join(
 print("qmldir: %s" % qmldir)
 
 include_files = [
-    (os.path.join(qmldir, "QtQuick.2"), "QtQuick.2"),
     (os.path.join(qmldir, "QtQuick"), "QtQuick"),
+    (os.path.join(qmldir, "QtQuick.2"), "QtQuick.2"),
     (os.path.join(qmldir, "QtGraphicalEffects"), "QtGraphicalEffects"),
     "pyblish_qml.bat",  # Windows
     "pyblish_tray.bat",
