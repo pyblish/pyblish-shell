@@ -5,8 +5,6 @@ import json
 import PyQt5
 import shutil
 
-print("PyQt5 path: %s" % PyQt5.__file__)
-
 builddir = os.path.join(os.path.dirname(__file__), "build")
 
 print("Cleaning /build directory..")
@@ -23,15 +21,34 @@ qmldir = os.path.join(
     "qml"
 )
 
-include_files = [
-    # "pyblish_qml.bat",  # Windows
-    # "pyblish_tray.bat",
-    # "pyblish_qml",  # Unix
-    # "pyblish_tray",
-    # (os.path.join(qmldir, "QtQuick"), "QtQuick"),
-    # (os.path.join(qmldir, "QtQuick.2"), "QtQuick.2"),
-    # (os.path.join(qmldir, "QtGraphicalEffects"), "QtGraphicalEffects"),
+include_files = []
+if "win32" in sys.platform:
+    include_files.extend([
+        "pyblish_qml.bat",  # Windows
+        "pyblish_tray.bat",
+        (os.path.join(qmldir, "QtQuick"), "QtQuick"),
+        (os.path.join(qmldir, "QtQuick.2"), "QtQuick.2"),
+        (os.path.join(qmldir, "QtGraphicalEffects"), "QtGraphicalEffects")
+    ])
+
+elif "linux" in sys.platform:
+    include_files.extend([
+        "pyblish_qml",
+        "pyblish_tray",
+        (os.path.join(qmldir, "QtQuick"), "QtQuick"),
+        (os.path.join(qmldir, "QtQuick.2"), "QtQuick.2"),
+        (os.path.join(qmldir, "QtGraphicalEffects"), "QtGraphicalEffects"),
+    ])
 ]
+
+elif "darwin" in sys.platform:
+    include_files.extend([
+        "pyblish_qml",
+        "pyblish_tray",
+    ])
+
+else:
+    sys.stderr.write("WARNING: Unsupported platform: %s\n" % sys.platform)
 
 with open("includes.json") as f:
     includes = json.load(f)
@@ -53,8 +70,7 @@ for module in includes:
 if missing:
     sys.stderr.write("There were missing modules\n")
     for module in missing:
-        sys.stderr.write("- %s\n" % module)
-    exit(1)
+        sys.stderr.write("WARNING: - %s\n" % module)
 
 # Important to import after above test
 from cx_Freeze import setup, Executable
@@ -83,26 +99,3 @@ setup(
         ),
     ]
 )
-
-# Copy data files
-# Done manually, due to bug on OSX
-for src in [os.path.abspath("pyblish_qml.bat"),
-            os.path.abspath("pyblish_tray.bat"),
-            os.path.abspath("pyblish_qml"),
-            os.path.abspath("pyblish_tray"),
-            os.path.join(qmldir, "QtQuick"),
-            os.path.join(qmldir, "QtQuick.2"),
-            os.path.join(qmldir, "QtGraphicalEffects")]:
-
-    basename = os.path.basename(src)
-    dst = os.path.join(builddir, basename)
-
-    if os.path.isdir(src):
-        shutil.copytree(src, dst)
-    else:
-        shutil.copyfile(src, dst)
-
-print("Build complete")
-for root, dirs, files in os.walk(builddir):
-    for file in files:
-        print(os.path.join(root, file))
