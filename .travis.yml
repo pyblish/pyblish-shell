@@ -18,7 +18,7 @@ script:
 - echo "Building.."
 - python setup.py build
 - echo "Build completed"
-- tree build
+- find build
 - echo "Packaging.."
 - python dist.py $TRAVIS_OS_NAME
 - echo "Packaging completed"
