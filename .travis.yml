@@ -26,7 +26,7 @@ deploy:
   provider: releases
   api_key:
     secure: MJMa9pnAAtfebX+mA+JSkYwY0D1qrfnD6JUWPoaKPzd7+hbMkcAQwjRIY7PQ4+mffLbHRnjxbIoEVjYBXnF9b/veCI0561kZ97pxqgMAls2jESpzksIhM1LKNAqFBYWrBRAjYQlWIGzSenoKNBMB9AEAntH2g+ZJ/wwqCga2CnjeVO9PV974kCTF1ima5pAqoU0Vd/Or0bgV21Hsm9e2n3+gIa3M19VCStnQ7DAcWCv4ez70+UEuVeXKD3Goy7vnegndrwuRLZxXcZO3PQPyTr5Q0dM3Tw/IIa24BrynU0azVEyy5btXQUFdi3bZYpNnpo2u3sNXlBTOxzNpK6anwaQOeu1JLJIqUhaSp9dvJ8K4gM921SPSIg9RvrNKzFDZRwS8EwPwIj0jR/TOSbS15UjEZlKXpesxBZuE3oc84ho7uETFZv1wur1KKql67590HIfWVg9tE2eooTHDGZtSIhZo0E1APNxihavgmb6W9kSBKeIKlti1jt4Y55FtXTpinstonIomKf9lEnTLpzZKFQT/Ilr7qh4E1matG1gcnPUB43EajvunEwDb6W4zGVHJJCDl8pmADbVF5zLxroWTaFGR0Dl46LBhyRWlO/Yh/vsbhVVuBHHVJZzLyl6HB1u+rwIcHv2VeqAU5LedCLiwrAi27p98skB2DruA8h8Rb7Q=
-  file: "/home/travis/build/pyblish/pyblish-shell/dist/*"
+  file: "$TRAVIS_BUILD_DIR/dist/*"
   file_glob: true
   skip_cleanup: true
   on:
