@@ -1,2 +1,4 @@
 cx_Freeze
+nose
+coverage
 psutil

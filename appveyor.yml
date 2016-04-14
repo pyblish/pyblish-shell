@@ -9,7 +9,7 @@ install:
   - set PYTHONPATH=%CD%\pyblish\pythonpath
   - set PATH=C:\Program Files (x86)\Inno Setup 5;%PATH%
 
-  - pip install cx_Freeze psutil
+  - pip install -r requirements.txt
   - pip install git+git://github.com/pyqt/python-qt5.git
   - git clone https://github.com/pyblish/pyblish
   - choco install -y InnoSetup

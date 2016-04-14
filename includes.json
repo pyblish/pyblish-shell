@@ -8,6 +8,10 @@
     "PyQt5.QtOpenGL",
     "PyQt5.QtTest",
 
+    "psutil",
+    "coverage",
+    "nose",
+
     "BaseHTTPServer",
     "Bastion",
     "CGIHTTPServer",
@@ -415,7 +419,6 @@
     "pprint",
     "profile",
     "pstats",
-    "psutil",
     "py_compile",
     "pyclbr",
     "pydoc",
