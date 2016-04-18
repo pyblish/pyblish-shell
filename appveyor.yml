@@ -12,7 +12,7 @@ install:
   - pip install -r requirements.txt
   - pip install git+git://github.com/pyqt/python-qt5.git
   - git clone https://github.com/pyblish/pyblish
-  - choco install -y InnoSetup
+  - .appveyor/install_innosetup.ps1
 
 build_script:
   - echo Building..
