@@ -6,7 +6,7 @@ import runpy
 import argparse
 import subprocess
 
-version = "1.1.3"
+version = "1.1.4"
 
 # Preserve PYTHONPATH, which is removed from sys.path by cx_Freeze
 PYTHONPATH = os.environ.get("PYTHONPATH") or ""
