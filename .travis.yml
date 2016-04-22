@@ -22,6 +22,9 @@ script:
 - python dist.py $TRAVIS_OS_NAME
 - echo "Packaging completed"
 
+after_script:
+- if [[ $TRAVIS_OS_NAME = 'osx' ]]; then source .travis/after_install_osx.sh; fi
+
 deploy:
   provider: releases
   api_key:
